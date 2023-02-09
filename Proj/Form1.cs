@@ -34,7 +34,7 @@ namespace Proj
             Dictionary<string, int> countDict = ListToDictionaryForCount(newLog);
             string newFile2 = "output2.csv";
             WriteDictToCSV(countDict, newFile2);
-            //MessageBox.Show(LogidCount + ", " + dateCount + ", " + WafLogCount);
+            MessageBox.Show("Job Complete!");
         }
         static Dictionary<string, int> ListToDictionaryForCount(List<KeyValuePair<string, List<string>>> log)
         {
@@ -54,9 +54,18 @@ namespace Proj
         }
         static void WriteDictToCSV(Dictionary<string, int> dict, string csvFile)
         {
+            /*var sortedDict = dict.OrderBy(x => int.Parse(x.Key.Split(':')[1].Trim().Replace("'", ""))).ToDictionary(x => x.Key, x => x.Value);
             using (var writer = new StreamWriter(csvFile))
             {
-                foreach (var item in dict)
+                foreach (var item in sortedDict)
+                {
+                    string line = item.Key + "," + string.Join(",", item.Value);
+                    writer.WriteLine(line);
+                }
+            }*/
+            using (var writer = new StreamWriter(csvFile))
+            {
+                foreach (var item in dict.OrderByDescending(x => x.Value))
                 {
                     string line = item.Key + "," + string.Join(",", item.Value);
                     writer.WriteLine(line);
