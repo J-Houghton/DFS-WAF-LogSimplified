@@ -29,10 +29,10 @@ namespace Proj
         {
             List<KeyValuePair<string, List<string>>> newLog = ConvertCsvToDictionary(openFileDialog1.FileName);
 
-            string newFile = "output.csv";
+            string newFile = "shortenLog.csv";
             WriteListToCSV(newLog, newFile);
             Dictionary<string, int> countDict = ListToDictionaryForCount(newLog);
-            string newFile2 = "output2.csv";
+            string newFile2 = "RuleIDCounts.csv";
             WriteDictToCSV(countDict, newFile2);
             MessageBox.Show("Job Complete!");
         }
